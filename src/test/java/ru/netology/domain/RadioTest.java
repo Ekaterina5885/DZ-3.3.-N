@@ -6,11 +6,11 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class RadioTest {
 
-    Radio radio = new Radio();
+    Radio radio = new Radio(10);
 
     @Test
     public void shouldGetAndSetNameRadio() {
-
+        Radio radio = new Radio();
         String expected = "Радио - Мир";
 
         assertNull(radio.getName());
@@ -21,10 +21,9 @@ public class RadioTest {
     @Test
     public void shouldGetAndSet() {
         assertEquals(0, radio.getMinRadioStation());
-        assertEquals(9, radio.getMaxRadioStation());
+        assertEquals(10, radio.getMaxRadioStation());
         assertEquals(0, radio.getMinVolume());
-        assertEquals(10, radio.getMaxVolume());
-
+        assertEquals(100, radio.getMaxVolume());
     }
 
     //  Текущая радиостанция в допустимом диапазоне;
@@ -42,7 +41,7 @@ public class RadioTest {
     @Test
     public void currentRadioStationAbovelimitValue() {
 
-        radio.setCurrentRadioStation(10);
+        radio.setCurrentRadioStation(11);
 
         int expected = 0;
         int actual = radio.getCurrentRadioStation();
@@ -87,7 +86,7 @@ public class RadioTest {
     //  Следующая радиостанция выше максимальной;
     public void nextStationButtonAboveMaxRadioStation() {
 
-        radio.setCurrentRadioStation(9);
+        radio.setCurrentRadioStation(10);
         radio.nextButton();
 
         int expected = 0;
@@ -102,7 +101,7 @@ public class RadioTest {
         radio.setCurrentRadioStation(-1);
         radio.prevButton();
 
-        int expected = 9;
+        int expected = 10;
         int actual = radio.getCurrentRadioStation();
         assertEquals(expected, actual);
     }
@@ -111,10 +110,10 @@ public class RadioTest {
     @Test
     void currentVolumeAbovelimitValue() {
 
-        radio.setCurrentVolume(10);
+        radio.setCurrentVolume(100);
         radio.plusButton();
 
-        int expected = 10;
+        int expected = 100;
         int actual = radio.getCurrentVolume();
         assertEquals(expected, actual);
     }
@@ -162,5 +161,4 @@ public class RadioTest {
         assertFalse(radio.isOn());
 
     }
-
 }

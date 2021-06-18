@@ -1,14 +1,24 @@
 package ru.netology.domain;
 
-public class Radio<numberRadioStation> {
+public class Radio {
     private String name;
     private int currentRadioStation;
-    private int maxRadioStation = 9;
+    private int quantityRadioStation = 10;
+    private int maxRadioStation = quantityRadioStation;
     private int minRadioStation = 0;
     private int currentVolume;
-    private int maxVolume = 10;
+    private int maxVolume = 100;
     private int minVolume = 0;
     private boolean on;
+
+    // Конструктор без параметров;
+    public Radio() {
+    }
+
+    // Конструктора с одним параметром;
+    public Radio(int quantityRadioStation) {
+        this.quantityRadioStation = quantityRadioStation;
+    }
 
     public String getName() {
         return name;
@@ -22,7 +32,7 @@ public class Radio<numberRadioStation> {
         return minRadioStation;
     }
 
-    //    public void setMinRadioStation(int minRadioStation) {
+//    public void setMinRadioStation(int minRadioStation) {
 //        this.minRadioStation = minRadioStation;
 //    }
 
