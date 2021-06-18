@@ -6,24 +6,16 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class RadioTest {
 
-    Radio radio = new Radio(10);
+    Radio radio = new Radio();
 
     @Test
     public void shouldGetAndSetNameRadio() {
-        Radio radio = new Radio();
+
         String expected = "Радио - Мир";
 
         assertNull(radio.getName());
         radio.setName(expected);
         assertEquals(expected, radio.getName());
-    }
-
-    @Test
-    public void shouldGetAndSet() {
-        assertEquals(0, radio.getMinRadioStation());
-        assertEquals(10, radio.getMaxRadioStation());
-        assertEquals(0, radio.getMinVolume());
-        assertEquals(100, radio.getMaxVolume());
     }
 
     //  Текущая радиостанция в допустимом диапазоне;
@@ -71,18 +63,6 @@ public class RadioTest {
     }
 
     @Test
-    //  Кнопка "Prev".
-    public void prevStationButton() {
-
-        radio.setCurrentRadioStation(8);
-        radio.prevButton();
-
-        int expected = 7;
-        int actual = radio.getCurrentRadioStation();
-        assertEquals(expected, actual);
-    }
-
-    @Test
     //  Следующая радиостанция выше максимальной;
     public void nextStationButtonAboveMaxRadioStation() {
 
@@ -90,6 +70,18 @@ public class RadioTest {
         radio.nextButton();
 
         int expected = 0;
+        int actual = radio.getCurrentRadioStation();
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    //  Кнопка "Prev".
+    public void prevStationButton() {
+
+        radio.setCurrentRadioStation(8);
+        radio.prevButton();
+
+        int expected = 7;
         int actual = radio.getCurrentRadioStation();
         assertEquals(expected, actual);
     }
@@ -162,3 +154,4 @@ public class RadioTest {
 
     }
 }
+
