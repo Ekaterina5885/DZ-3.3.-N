@@ -6,7 +6,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class RadioTest {
 
-    Radio radio = new Radio(10);
+    Radio radio = new Radio(5);
 
     @Test
     public void shouldGetAndSetNameRadio() {
