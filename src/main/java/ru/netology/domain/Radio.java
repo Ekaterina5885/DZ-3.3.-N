@@ -1,13 +1,5 @@
 package ru.netology.domain;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-
-@NoArgsConstructor
-@AllArgsConstructor
-@Data
-
 public class Radio {
     private String name;
     private int currentRadioStation;
@@ -18,6 +10,43 @@ public class Radio {
     private int maxVolume = 100;
     private int minVolume = 0;
     private boolean on;
+
+    // Конструктор без параметров;
+    public Radio() {
+    }
+
+    // Конструктора с одним параметром;
+    public Radio(int quantityRadioStation) {
+        this.quantityRadioStation = quantityRadioStation;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public int getMinRadioStation() {
+        return minRadioStation;
+    }
+
+//    public void setMinRadioStation(int minRadioStation) {
+//        this.minRadioStation = minRadioStation;
+//    }
+
+    public int getMaxRadioStation() {
+        return maxRadioStation;
+    }
+
+//    public void setMaxRadioStation(int maxRadioStation) {
+//        this.maxRadioStation = maxRadioStation;
+//    }
+
+    public int getCurrentRadioStation() {
+        return currentRadioStation;
+    }
 
     //  Выбор текущей радиостанции.
     public void setCurrentRadioStation(int currentRadioStation) {
@@ -48,6 +77,30 @@ public class Radio {
         this.currentRadioStation--;
     }
 
+    public int getMinVolume() {
+        return minVolume;
+    }
+
+//    public void setMinVolume(int minVolume) {
+//        this.minVolume = minVolume;
+//    }
+
+    public int getMaxVolume() {
+        return maxVolume;
+    }
+
+//    public void setMaxVolume(int maxVolume) {
+//        this.maxVolume = maxVolume;
+//    }
+
+    public int getCurrentVolume() {
+        return currentVolume;
+    }
+
+    public void setCurrentVolume(int currentVolume) {
+        this.currentVolume = currentVolume;
+    }
+
     //    Кнопка "Плюс" (Уровень громкости);
     public void plusButton() {
         if (currentVolume == maxVolume) {
@@ -64,4 +117,11 @@ public class Radio {
         this.currentVolume--;
     }
 
+    public boolean isOn() {
+        return on;
+    }
+
+//    public void setOn(boolean on) {
+//        this.on = on;
+//    }
 }
