@@ -6,11 +6,11 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class RadioTest {
 
-    Radio radio = new Radio(5);
+    Radio radio = new Radio();
 
     @Test
     public void shouldGetAndSetNameRadio() {
-        Radio radio = new Radio();
+
         String expected = "Радио - Мир";
 
         assertNull(radio.getName());
@@ -18,17 +18,9 @@ public class RadioTest {
         assertEquals(expected, radio.getName());
     }
 
-    @Test
-    public void shouldGetAndSet() {
-        assertEquals(0, radio.getMinRadioStation());
-        assertEquals(10, radio.getMaxRadioStation());
-        assertEquals(0, radio.getMinVolume());
-        assertEquals(100, radio.getMaxVolume());
-    }
-
     //  Текущая радиостанция в допустимом диапазоне;
     @Test
-    public void currentRadioStation() {
+    public void shouldSwitchCurrentRadioStationInAcceptableRange() {
 
         radio.setCurrentRadioStation(8);
 
@@ -39,9 +31,45 @@ public class RadioTest {
 
     //  Текущая радиостанция выше граничного значения;
     @Test
-    public void currentRadioStationAbovelimitValue() {
+    public void shouldSwitchCurrentRadioStationAbovelimitValue() {
 
         radio.setCurrentRadioStation(11);
+        radio.nextButton();
+
+        int expected = 0;
+        int actual = radio.getCurrentRadioStation();
+        assertEquals(expected, actual);
+    }
+
+    //  Текущая радиостанция - максимальная;
+    @Test
+    public void shouldSwitchCurrentRadioStationEqualMaxRadioStation() {
+
+        radio.setCurrentRadioStation(10);
+
+        int expected = 10;
+        int actual = radio.getCurrentRadioStation();
+        assertEquals(expected, actual);
+    }
+
+    //  Увеличение текущей радиостанции, равная 0;
+    @Test
+    public void shouldSwitchRadioStationEqualZero() {
+
+        radio.setCurrentRadioStation(0);
+        radio.nextButton();
+
+        int expected = 1;
+        int actual = radio.getCurrentRadioStation();
+        assertEquals(expected, actual);
+    }
+
+    //  Уменьшение текущей радиостанции, равная 1;
+    @Test
+    public void shouldSwitchRadioStationEqualOne() {
+
+        radio.setCurrentRadioStation(1);
+        radio.prevButton();
 
         int expected = 0;
         int actual = radio.getCurrentRadioStation();
@@ -50,17 +78,31 @@ public class RadioTest {
 
     //  Текущая радиостанция ниже граничного значения;
     @Test
-    public void currentRadioStationBelowlimitValue() {
+    public void shouldSwitchCurrentRadioStationBelowlimitValue() {
 
         radio.setCurrentRadioStation(-1);
+        radio.prevButton();
 
-        int expected = 0;
+        int expected = 10;
         int actual = radio.getCurrentRadioStation();
         assertEquals(expected, actual);
     }
 
+    //  Переключение с последней станции на следующую;
     @Test
+    public void shouldSwitchNextStationButtonAboveMaxRadioStation() {
+
+        radio.setCurrentRadioStation(11);
+        radio.nextButton();
+
+        int expected = 0;
+        int actual = radio.getCurrentRadioStation();
+        assertEquals(expected, actual);
+
+    }
+
     //  Кнопка "Next".
+    @Test
     public void nextStationButton() {
 
         radio.nextButton();
@@ -70,8 +112,8 @@ public class RadioTest {
         assertEquals(expected, actual);
     }
 
-    @Test
     //  Кнопка "Prev".
+    @Test
     public void prevStationButton() {
 
         radio.setCurrentRadioStation(8);
@@ -82,33 +124,9 @@ public class RadioTest {
         assertEquals(expected, actual);
     }
 
-    @Test
-    //  Следующая радиостанция выше максимальной;
-    public void nextStationButtonAboveMaxRadioStation() {
-
-        radio.setCurrentRadioStation(10);
-        radio.nextButton();
-
-        int expected = 0;
-        int actual = radio.getCurrentRadioStation();
-        assertEquals(expected, actual);
-    }
-
-    @Test
-    //  Предыдущая радиостанция ниже минимальной;
-    public void prevStationButtonBelowMinRadioStation() {
-
-        radio.setCurrentRadioStation(-1);
-        radio.prevButton();
-
-        int expected = 10;
-        int actual = radio.getCurrentRadioStation();
-        assertEquals(expected, actual);
-    }
-
     //  Текущий уровень громкости выше граничного значения;
     @Test
-    void currentVolumeAbovelimitValue() {
+    public void shouldSwitchCurrentVolumeAbovelimitValue() {
 
         radio.setCurrentVolume(100);
         radio.plusButton();
@@ -120,7 +138,7 @@ public class RadioTest {
 
     //  Текущий уровень громкости ниже граничного значения;
     @Test
-    void setCurrentVolumeBelowlimitValue() {
+    public void shouldSwitchSetCurrentVolumeBelowlimitValue() {
 
         radio.minusButton();
 
