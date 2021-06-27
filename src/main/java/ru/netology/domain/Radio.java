@@ -3,21 +3,20 @@ package ru.netology.domain;
 public class Radio {
     private String name;
     private int currentRadioStation;
-    private int quantityRadioStation = 10;
-    private int maxRadioStation = quantityRadioStation;
     private int minRadioStation = 0;
+    private int maxRadioStation;
     private int currentVolume;
     private int maxVolume = 100;
     private int minVolume = 0;
     private boolean on;
 
-    // Конструктор без параметров;
-    public Radio() {
+    // Конструктора с одним параметром;
+    public Radio(int maxRadioStation) {
+        this.maxRadioStation = maxRadioStation;
     }
 
-    // Конструктора с одним параметром;
-    public Radio(int quantityRadioStation) {
-        this.quantityRadioStation = quantityRadioStation;
+    public Radio() {
+        this.maxRadioStation = 10;
     }
 
     public String getName() {
@@ -50,31 +49,25 @@ public class Radio {
 
     //  Выбор текущей радиостанции.
     public void setCurrentRadioStation(int currentRadioStation) {
-        if (currentRadioStation > maxRadioStation) {
-            return;
-        }
-        if (currentRadioStation < minRadioStation) {
-            return;
-        }
         this.currentRadioStation = currentRadioStation;
     }
 
     //  Кнопка "Next";
     public void nextButton() {
-        if (currentRadioStation == maxRadioStation) {
-            this.currentRadioStation = minRadioStation;
-            return;
+        if (currentRadioStation < maxRadioStation) {
+            this.currentRadioStation++;
+        } else {
+            currentRadioStation = minRadioStation;
         }
-        this.currentRadioStation++;
     }
 
     //  Кнопка "Prev";
     public void prevButton() {
-        if (currentRadioStation == minRadioStation) {
+        if (currentRadioStation > minRadioStation) {
+            this.currentRadioStation--;
+        } else {
             this.currentRadioStation = maxRadioStation;
-            return;
         }
-        this.currentRadioStation--;
     }
 
     public int getMinVolume() {
@@ -103,18 +96,16 @@ public class Radio {
 
     //    Кнопка "Плюс" (Уровень громкости);
     public void plusButton() {
-        if (currentVolume == maxVolume) {
-            return;
+        if (currentVolume < maxVolume) {
+            currentVolume++;
         }
-        this.currentVolume++;
     }
 
     //    Кнопка "Минус" (Уровень громкости);
     public void minusButton() {
-        if (currentVolume == minVolume) {
-            return;
+        if (currentVolume > minVolume) {
+            currentVolume--;
         }
-        this.currentVolume--;
     }
 
     public boolean isOn() {
