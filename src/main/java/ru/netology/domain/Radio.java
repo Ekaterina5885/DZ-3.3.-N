@@ -4,19 +4,19 @@ public class Radio {
     private String name;
     private int currentRadioStation;
     private int minRadioStation = 0;
-    private int maxRadioStation;
+    private int quantityRadioStation;
     private int currentVolume;
     private int maxVolume = 100;
     private int minVolume = 0;
     private boolean on;
 
     // Конструктора с одним параметром;
-    public Radio(int maxRadioStation) {
-        this.maxRadioStation = maxRadioStation;
+    public Radio(int quantityRadioStation) {
+        this.quantityRadioStation = quantityRadioStation;
     }
 
     public Radio() {
-        this.maxRadioStation = 10;
+        this.quantityRadioStation = 10;
     }
 
     public String getName() {
@@ -35,12 +35,12 @@ public class Radio {
 //        this.minRadioStation = minRadioStation;
 //    }
 
-    public int getMaxRadioStation() {
-        return maxRadioStation;
+    public int getQuantityRadioStation() {
+        return quantityRadioStation;
     }
 
-//    public void setMaxRadioStation(int maxRadioStation) {
-//        this.maxRadioStation = maxRadioStation;
+//    public void setQuantityRadioStation(int quantityRadioStation) {
+//        this.quantityRadioStation = quantityRadioStation;
 //    }
 
     public int getCurrentRadioStation() {
@@ -54,7 +54,7 @@ public class Radio {
 
     //  Кнопка "Next";
     public void nextButton() {
-        if (currentRadioStation < maxRadioStation) {
+        if (currentRadioStation < quantityRadioStation) {
             this.currentRadioStation++;
         } else {
             currentRadioStation = minRadioStation;
@@ -66,7 +66,7 @@ public class Radio {
         if (currentRadioStation > minRadioStation) {
             this.currentRadioStation--;
         } else {
-            this.currentRadioStation = maxRadioStation;
+            this.currentRadioStation = quantityRadioStation;
         }
     }
 

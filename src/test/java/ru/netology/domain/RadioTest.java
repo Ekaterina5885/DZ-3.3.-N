@@ -22,7 +22,7 @@ public class RadioTest {
     public void shouldGetAndSet() {
 
         assertEquals(0, radio.getMinRadioStation());
-        assertEquals(10, radio.getMaxRadioStation());
+        assertEquals(10, radio.getQuantityRadioStation());
         assertEquals(0, radio.getMinVolume());
         assertEquals(100, radio.getMaxVolume());
     }
