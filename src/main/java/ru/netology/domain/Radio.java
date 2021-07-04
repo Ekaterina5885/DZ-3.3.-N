@@ -16,7 +16,7 @@ public class Radio {
     }
 
     public Radio() {
-        this.quantityRadioStation = 10;
+        this.quantityRadioStation = 9;
     }
 
     public String getName() {
@@ -57,7 +57,7 @@ public class Radio {
         if (currentRadioStation < quantityRadioStation) {
             this.currentRadioStation++;
         } else {
-            currentRadioStation = minRadioStation;
+            this.currentRadioStation = minRadioStation;
         }
     }
 

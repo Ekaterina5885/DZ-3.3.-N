@@ -22,17 +22,17 @@ public class RadioTest {
     public void shouldGetAndSet() {
 
         assertEquals(0, radio.getMinRadioStation());
-        assertEquals(10, radio.getQuantityRadioStation());
+        assertEquals(9, radio.getQuantityRadioStation());
         assertEquals(0, radio.getMinVolume());
         assertEquals(100, radio.getMaxVolume());
     }
 
-    //  Количество радиостанций 10. Переключение с последней станции на следующую;
+    //  Количество радиостанций 9. Переключение с последней станции на следующую;
     @Test
     public void shouldSwitchNextStation () {
 
-        Radio radio = new Radio(10);
-        radio.setCurrentRadioStation(11);
+        Radio radio = new Radio(9);
+        radio.setCurrentRadioStation(10);
         radio.nextButton();
 
         int expected = 0;
@@ -107,21 +107,10 @@ public class RadioTest {
     @Test
     public void shouldSwitchCurrentRadioStationAboveLimitValue() {
 
-        radio.setCurrentRadioStation(11);
+        radio.setCurrentRadioStation(10);
         radio.nextButton();
 
         int expected = 0;
-        int actual = radio.getCurrentRadioStation();
-        assertEquals(expected, actual);
-    }
-
-    //  Текущая радиостанция - максимальная;
-    @Test
-    public void shouldSwitchCurrentRadioStationEqualMaxRadioStation() {
-
-        radio.setCurrentRadioStation(10);
-
-        int expected = 10;
         int actual = radio.getCurrentRadioStation();
         assertEquals(expected, actual);
     }
@@ -157,7 +146,7 @@ public class RadioTest {
         radio.setCurrentRadioStation(-1);
         radio.prevButton();
 
-        int expected = 10;
+        int expected = 9;
         int actual = radio.getCurrentRadioStation();
         assertEquals(expected, actual);
     }
@@ -166,7 +155,7 @@ public class RadioTest {
     @Test
     public void shouldSwitchNextStationButtonAboveMaxRadioStation() {
 
-        radio.setCurrentRadioStation(11);
+        radio.setCurrentRadioStation(9);
         radio.nextButton();
 
         int expected = 0;
