@@ -32,7 +32,7 @@ public class RadioTest {
     public void shouldSwitchNextStation () {
 
         Radio radio = new Radio(9);
-        radio.setCurrentRadioStation(10);
+        radio.setCurrentRadioStation(9);
         radio.nextButton();
 
         int expected = 0;
@@ -71,7 +71,7 @@ public class RadioTest {
     public void shouldIncreaseRadioStation() {
 
         Radio radio = new Radio(0);
-        radio.setCurrentRadioStation(6);
+        radio.setCurrentRadioStation(1);
         radio.nextButton();
 
         int expected = 0;
@@ -84,7 +84,7 @@ public class RadioTest {
     public void shouldSwitchNextRadioStationsNegativeNumber() {
 
         Radio radio = new Radio(-1);
-        radio.setCurrentRadioStation(8);
+        radio.setCurrentRadioStation(1);
         radio.nextButton();
 
         int expected = 0;
