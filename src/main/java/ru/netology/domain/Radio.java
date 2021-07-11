@@ -12,7 +12,7 @@ public class Radio {
 
     // Конструктора с одним параметром;
     public Radio(int quantityRadioStation) {
-        this.quantityRadioStation = quantityRadioStation;
+        this.quantityRadioStation = quantityRadioStation - 1;
     }
 
     public Radio() {
@@ -49,24 +49,30 @@ public class Radio {
 
     //  Выбор текущей радиостанции.
     public void setCurrentRadioStation(int currentRadioStation) {
+        if (currentRadioStation > quantityRadioStation) {
+            return;
+        }
+        if (currentRadioStation < minRadioStation) {
+            return;
+        }
         this.currentRadioStation = currentRadioStation;
     }
 
     //  Кнопка "Next";
     public void nextButton() {
-        if (currentRadioStation < quantityRadioStation) {
-            this.currentRadioStation++;
-        } else {
+        if (currentRadioStation >= quantityRadioStation) {
             this.currentRadioStation = minRadioStation;
+        } else {
+            this.currentRadioStation++;
         }
     }
 
     //  Кнопка "Prev";
     public void prevButton() {
-        if (currentRadioStation > minRadioStation) {
-            this.currentRadioStation--;
-        } else {
+        if (currentRadioStation <= minRadioStation) {
             this.currentRadioStation = quantityRadioStation;
+        } else {
+            this.currentRadioStation--;
         }
     }
 

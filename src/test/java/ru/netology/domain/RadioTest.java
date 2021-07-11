@@ -5,7 +5,6 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 public class RadioTest {
-
     Radio radio = new Radio();
 
     @Test
@@ -27,15 +26,15 @@ public class RadioTest {
         assertEquals(100, radio.getMaxVolume());
     }
 
-    //  Количество радиостанций 9. Переключение с последней станции на следующую;
+    //  Количество радиостанций 9. Переключение с последней станции на предыдущую;
     @Test
-    public void shouldSwitchNextStation () {
+    public void shouldSwitchNextStation() {
 
         Radio radio = new Radio(9);
         radio.setCurrentRadioStation(9);
-        radio.nextButton();
+        radio.prevButton();
 
-        int expected = 0;
+        int expected = 8;
         int actual = radio.getCurrentRadioStation();
         assertEquals(expected, actual);
     }
@@ -49,6 +48,58 @@ public class RadioTest {
         radio.nextButton();
 
         int expected = 7;
+        int actual = radio.getCurrentRadioStation();
+        assertEquals(expected, actual);
+    }
+
+    //  Количество радиостанций 10. Переключение на следующую станцию.
+    @Test
+    public void shouldSwitchNextButtonAboveLimitValue() {
+
+        Radio radio = new Radio(10);
+        radio.setCurrentRadioStation(9);
+        radio.nextButton();
+
+        int expected = 0;
+        int actual = radio.getCurrentRadioStation();
+        assertEquals(expected, actual);
+    }
+
+    //  Количество радиостанций 1. Переключение на следующую станцию.
+    @Test
+    public void shouldSwitchNextButtonQuantityRadioStationOne() {
+
+        Radio radio = new Radio(1);
+        radio.setCurrentRadioStation(1);
+        radio.nextButton();
+
+        int expected = 0;
+        int actual = radio.getCurrentRadioStation();
+        assertEquals(expected, actual);
+    }
+
+    //  Количество радиостанций 1. Переключение на предыдущую станцию.
+    @Test
+    public void shouldSwitchPrevButtonQuantityRadioStationOne() {
+
+        Radio radio = new Radio(1);
+        radio.setCurrentRadioStation(1);
+        radio.prevButton();
+
+        int expected = 0;
+        int actual = radio.getCurrentRadioStation();
+        assertEquals(expected, actual);
+    }
+
+    //  Количество радиостанций 0. Переключение на предыдущую станцию.
+    @Test
+    public void shouldSwitchPrevButtonQuantityRadioStationZero() {
+
+        Radio radio = new Radio(10);
+        radio.setCurrentRadioStation(0);
+        radio.prevButton();
+
+        int expected = 9;
         int actual = radio.getCurrentRadioStation();
         assertEquals(expected, actual);
     }
