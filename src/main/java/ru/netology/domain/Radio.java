@@ -1,14 +1,23 @@
 package ru.netology.domain;
 
-public class Radio<numberRadioStation> {
+public class Radio {
     private String name;
     private int currentRadioStation;
-    private int maxRadioStation = 9;
     private int minRadioStation = 0;
+    private int quantityRadioStation;
     private int currentVolume;
-    private int maxVolume = 10;
+    private int maxVolume = 100;
     private int minVolume = 0;
     private boolean on;
+
+    // Конструктора с одним параметром;
+    public Radio(int quantityRadioStation) {
+        this.quantityRadioStation = quantityRadioStation - 1;
+    }
+
+    public Radio() {
+        this.quantityRadioStation = 9;
+    }
 
     public String getName() {
         return name;
@@ -22,16 +31,16 @@ public class Radio<numberRadioStation> {
         return minRadioStation;
     }
 
-    //    public void setMinRadioStation(int minRadioStation) {
+//    public void setMinRadioStation(int minRadioStation) {
 //        this.minRadioStation = minRadioStation;
 //    }
 
-    public int getMaxRadioStation() {
-        return maxRadioStation;
+    public int getQuantityRadioStation() {
+        return quantityRadioStation;
     }
 
-//    public void setMaxRadioStation(int maxRadioStation) {
-//        this.maxRadioStation = maxRadioStation;
+//    public void setQuantityRadioStation(int quantityRadioStation) {
+//        this.quantityRadioStation = quantityRadioStation;
 //    }
 
     public int getCurrentRadioStation() {
@@ -40,7 +49,7 @@ public class Radio<numberRadioStation> {
 
     //  Выбор текущей радиостанции.
     public void setCurrentRadioStation(int currentRadioStation) {
-        if (currentRadioStation > maxRadioStation) {
+        if (currentRadioStation > quantityRadioStation) {
             return;
         }
         if (currentRadioStation < minRadioStation) {
@@ -51,20 +60,20 @@ public class Radio<numberRadioStation> {
 
     //  Кнопка "Next";
     public void nextButton() {
-        if (currentRadioStation == maxRadioStation) {
+        if (currentRadioStation >= quantityRadioStation) {
             this.currentRadioStation = minRadioStation;
-            return;
+        } else {
+            this.currentRadioStation++;
         }
-        this.currentRadioStation++;
     }
 
     //  Кнопка "Prev";
     public void prevButton() {
-        if (currentRadioStation == minRadioStation) {
-            this.currentRadioStation = maxRadioStation;
-            return;
+        if (currentRadioStation <= minRadioStation) {
+            this.currentRadioStation = quantityRadioStation;
+        } else {
+            this.currentRadioStation--;
         }
-        this.currentRadioStation--;
     }
 
     public int getMinVolume() {
@@ -93,18 +102,16 @@ public class Radio<numberRadioStation> {
 
     //    Кнопка "Плюс" (Уровень громкости);
     public void plusButton() {
-        if (currentVolume == maxVolume) {
-            return;
+        if (currentVolume < maxVolume) {
+            currentVolume++;
         }
-        this.currentVolume++;
     }
 
     //    Кнопка "Минус" (Уровень громкости);
     public void minusButton() {
-        if (currentVolume == minVolume) {
-            return;
+        if (currentVolume > minVolume) {
+            currentVolume--;
         }
-        this.currentVolume--;
     }
 
     public boolean isOn() {
